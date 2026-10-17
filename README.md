@@ -20,6 +20,6 @@ On Windows, run ticket_queue.exe instead of ./ticket_queue.
 ## Course
 Data Structures and Algorithms, NMIMS MPSTME
 ## Team
-Hamza Sayyed, N108
-Raghunandan Shetty, N114
-Aditya Yadav, N137
+Hamza Sayyed - N108,
+Raghunandan Shetty - N114,
+Aditya Yadav - N137
