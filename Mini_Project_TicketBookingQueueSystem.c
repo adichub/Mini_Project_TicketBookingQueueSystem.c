@@ -1,41 +1,10 @@
 #include <stdio.h>
-#include <string.h>
 #define SIZE 5
 
 int queue[SIZE];
 int front = -1, rear = -1;
 
-/* Reads one integer after showing the prompt.
-   Asks again until the user types a valid number.
-   Returns 1 on success, 0 if the input has ended (EOF). */
-int readInt(const char *prompt, int *value)
-{
-    char line[64];
-    int c;
-
-    while (1)
-    {
-        printf("%s", prompt);
-
-        if (fgets(line, sizeof(line), stdin) == NULL)
-            return 0;
-
-        /* Discard the rest of an over-long line */
-        if (strchr(line, '\n') == NULL)
-        {
-            while ((c = getchar()) != '\n' && c != EOF)
-                ;
-        }
-
-        if (sscanf(line, "%d", value) == 1)
-            return 1;
-
-        printf("Invalid input! Please enter a number.\n");
-    }
-}
-
-/* Adds a ticket at the rear of the queue */
-void bookTicket(void)
+void bookTicket()
 {
     int ticket;
 
@@ -45,8 +14,8 @@ void bookTicket(void)
         return;
     }
 
-    if (!readInt("Enter Ticket Number: ", &ticket))
-        return;
+    printf("Enter Ticket Number: ");
+    scanf("%d", &ticket);
 
     if (front == -1)
         front = 0;
@@ -57,8 +26,7 @@ void bookTicket(void)
     printf("Ticket booked successfully!\n");
 }
 
-/* Removes the oldest ticket from the front of the queue */
-void processTicket(void)
+void processTicket()
 {
     if (front == -1)
     {
@@ -74,8 +42,7 @@ void processTicket(void)
         front = (front + 1) % SIZE;
 }
 
-/* Prints all tickets from front to rear */
-void displayQueue(void)
+void displayQueue()
 {
     int i;
 
@@ -101,8 +68,7 @@ void displayQueue(void)
     printf("\n");
 }
 
-/* Looks for a ticket number in the queue */
-void searchTicket(void)
+void searchTicket()
 {
     int ticket, i;
 
@@ -112,8 +78,8 @@ void searchTicket(void)
         return;
     }
 
-    if (!readInt("Enter Ticket Number to Search: ", &ticket))
-        return;
+    printf("Enter Ticket Number to Search: ");
+    scanf("%d", &ticket);
 
     i = front;
 
@@ -135,8 +101,7 @@ void searchTicket(void)
 }
 
 
-/* Removes a ticket from any position and closes the gap */
-void deleteTicket(void)
+void deleteTicket()
 {
     int ticket, i, pos, found = 0;
 
@@ -146,8 +111,8 @@ void deleteTicket(void)
         return;
     }
 
-    if (!readInt("Enter Ticket Number to Delete: ", &ticket))
-        return;
+    printf("Enter Ticket Number to Delete: ");
+    scanf("%d", &ticket);
 
     i = front;
     pos = 0;
@@ -194,7 +159,7 @@ void deleteTicket(void)
 }
 
 
-int main(void)
+int main()
 {
     int choice;
 
@@ -207,12 +172,8 @@ int main(void)
         printf("4. Search Ticket\n");
         printf("5. Delete Ticket\n");
         printf("6. Exit\n");
-
-        if (!readInt("Enter your choice: ", &choice))
-        {
-            printf("\nInput ended. Exiting the system...\n");
-            break;
-        }
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
 
         switch (choice)
         {
