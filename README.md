@@ -1,4 +1,4 @@
-# train-ticket-booking-queue-system
+# ticket-booking-queue-system
 Ticket Booking Queue System using a circular queue in C, DSA Lab Mini Project, Sem 3.
 
 # Ticket Booking Queue System
